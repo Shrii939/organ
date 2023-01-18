@@ -1,0 +1,165 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* CSS for header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+
+
+.nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f5f5f5;
+    margin-right: 20px;
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: #000;
+    padding: 35px 20px;
+}
+
+/* CSS for main element */
+
+.about-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 80px;
+    border-top: 2px solid #eeeeee;
+}
+
+.about-us img {
+    width: 500px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about-us-text h2 {
+    font-size: 30px;
+    color: #333333;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.about-us-text p {
+    font-size: 15px;
+    color: #585858;
+    margin: 10px 0;
+}
+
+/* CSS for footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 40px 80px;
+}
+
+.footer .aboutus {
+    color: white;
+}
+button {
+    font-family: PlusJakartaSans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Cantarell,Helvetica Neue,Ubuntu,sans-serif;
+    font-size: 1rem;
+    align-items: center;
+    height: 48px;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    padding: 0 1.2rem;
+    color: #ddd;
+    border: none;
+    box-shadow: 0 .5rem 1rem rgba(143, 142, 142, 0.15)!important;
+    background: #000000;
+    margin-bottom: 3px;
+   }
+   
+  
+   button:hover {
+    background: #3e3e3e;
+   }
+   
+   .card {
+ width: 11.875em;
+ height: 16.5em;
+ box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
+ cursor: pointer;
+ transition: all 120ms;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: #fff;
+ padding: 0.5em;
+ padding-bottom: 3.4em;
+}
+
+.card::after {
+ content: "Add to Cart";
+ padding-top: 1.25em;
+ padding-left: 1.25em;
+ position: absolute;
+ left: 0;
+ bottom: -60px;
+ background: #00AC7C;
+ color: #fff;
+ height: 2.5em;
+ width: 100%;
+ transition: all 80ms;
+ font-weight: 600;
+ text-transform: uppercase;
+}
+
+.card .title {
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 0.9em;
+ position: absolute;
+ left: 0.625em;
+ bottom: 1.875em;
+ font-weight: 400;
+}
+
+.card .price {
+ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ font-size: 0.9em;
+ position: absolute;
+ left: 0.625em;
+ bottom: 0.625em;
+}
+
+.card:hover::after {
+ bottom: 0;
+}
+
+.card:active {
+ transform: scale(0.98);
+}
+
+.card:active::after {
+ content: "Added !";
+ height: 3.125em;
+}
+
+.text {
+ max-width: 55px;
+}
+
+.image {
+ background: rgb(241, 241, 241);
+ width: 100%;
+ height: 100%;
+ display: grid;
+ place-items: center;
+}
