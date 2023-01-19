@@ -52,6 +52,9 @@ if ($conn) {
                         <li class="nav-item">
                             <a class="nav-link" href="Order.php">Order</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="History.php">History</a>
+                        </li>
                     </ul>
                 </div>
             </div>

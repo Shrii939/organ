@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
+<<<<<<< HEAD
 -- Generation Time: Jan 19, 2023 at 07:17 PM
+=======
+-- Generation Time: Jan 19, 2023 at 07:50 PM
+>>>>>>> cd6f2b0 (added functionality)
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,14 +66,24 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`Hname`, `Haddr`, `contact`, `dt`, `Oid`) VALUES
 ('my hst', 'asdf', 1234, '2023-01-19', 2),
+<<<<<<< HEAD
 ('my hst', 'asdf', 1234, '2023-01-19', 3);
+=======
+('my hst', 'asdf', 1234, '2023-01-19', 3),
+('aj', 'banglore', 1234456, '2023-01-17', 5);
+>>>>>>> cd6f2b0 (added functionality)
 
 --
 -- Triggers `orders`
 --
 DELIMITER $$
+<<<<<<< HEAD
 CREATE TRIGGER `make_history` BEFORE INSERT ON `orders` FOR EACH ROW INSERT INTO triggerA (Hname, Oid, Did, Otype, Odetails)
    VALUES((SELECT Hname from orders), (SELECT Oid, Did, Otype, Odetails FROM organ))
+=======
+CREATE TRIGGER `make_history` BEFORE INSERT ON `orders` FOR EACH ROW INSERT INTO triggerA
+SELECT * FROM organ
+>>>>>>> cd6f2b0 (added functionality)
 $$
 DELIMITER ;
 
@@ -106,12 +120,22 @@ CREATE TABLE `organ_bank` (
 --
 
 CREATE TABLE `triggerA` (
+<<<<<<< HEAD
   `Hname` varchar(30) DEFAULT NULL,
+=======
+>>>>>>> cd6f2b0 (added functionality)
   `Oid` int(11) NOT NULL,
   `Did` int(11) NOT NULL,
   `Otype` varchar(20) NOT NULL,
   `Odetails` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `triggerA`
+--
+
+INSERT INTO `triggerA` (`Oid`, `Did`, `Otype`, `Odetails`) VALUES
+(5, 1, 'heart', 'healthy lovable heart');
 
 --
 -- Indexes for dumped tables
