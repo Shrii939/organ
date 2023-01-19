@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2023 at 06:59 PM
+-- Generation Time: Jan 19, 2023 at 07:17 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,6 +64,15 @@ INSERT INTO `orders` (`Hname`, `Haddr`, `contact`, `dt`, `Oid`) VALUES
 ('my hst', 'asdf', 1234, '2023-01-19', 2),
 ('my hst', 'asdf', 1234, '2023-01-19', 3);
 
+--
+-- Triggers `orders`
+--
+DELIMITER $$
+CREATE TRIGGER `make_history` BEFORE INSERT ON `orders` FOR EACH ROW INSERT INTO triggerA (Hname, Oid, Did, Otype, Odetails)
+   VALUES((SELECT Hname from orders), (SELECT Oid, Did, Otype, Odetails FROM organ))
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -97,12 +106,11 @@ CREATE TABLE `organ_bank` (
 --
 
 CREATE TABLE `triggerA` (
-  `Did` int(11) DEFAULT NULL,
-  `Oid` int(11) NOT NULL,
-  `Otype` varchar(20) DEFAULT NULL,
   `Hname` varchar(30) DEFAULT NULL,
-  `contact` bigint(20) DEFAULT NULL,
-  `dt` date DEFAULT NULL
+  `Oid` int(11) NOT NULL,
+  `Did` int(11) NOT NULL,
+  `Otype` varchar(20) NOT NULL,
+  `Odetails` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -132,12 +140,6 @@ ALTER TABLE `organ`
 -- Indexes for table `organ_bank`
 --
 ALTER TABLE `organ_bank`
-  ADD PRIMARY KEY (`Oid`);
-
---
--- Indexes for table `triggerA`
---
-ALTER TABLE `triggerA`
   ADD PRIMARY KEY (`Oid`);
 
 --
