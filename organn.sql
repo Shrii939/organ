@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2023 at 10:28 PM
+-- Generation Time: Jan 19, 2023 at 04:27 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -69,6 +69,40 @@ CREATE TABLE `organ` (
   `Odetails` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organ_bank`
+--
+
+CREATE TABLE `organ_bank` (
+  `Oid` int(11) NOT NULL,
+  `tdetails` varchar(20) DEFAULT NULL,
+  `Otype` varchar(20) DEFAULT NULL,
+  `oissue` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Triggers `organ_bank`
+--
+DELIMITER $$
+CREATE TRIGGER `tiggera` AFTER INSERT ON `organ_bank` FOR EACH ROW insert into triggerA values(new.Oid , new.tdetails,new.Otype,new.oissue )
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `triggerA`
+--
+
+CREATE TABLE `triggerA` (
+  `Oid` int(11) DEFAULT NULL,
+  `tdetails` varchar(20) DEFAULT NULL,
+  `Otype` varchar(20) DEFAULT NULL,
+  `oissue` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -92,6 +126,18 @@ ALTER TABLE `orders`
 ALTER TABLE `organ`
   ADD PRIMARY KEY (`Oid`,`Did`),
   ADD KEY `Did` (`Did`);
+
+--
+-- Indexes for table `organ_bank`
+--
+ALTER TABLE `organ_bank`
+  ADD PRIMARY KEY (`Oid`);
+
+--
+-- Indexes for table `triggerA`
+--
+ALTER TABLE `triggerA`
+  ADD KEY `Oid` (`Oid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -118,6 +164,18 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `organ`
   ADD CONSTRAINT `organ_ibfk_1` FOREIGN KEY (`Did`) REFERENCES `donor` (`Did`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `organ_bank`
+--
+ALTER TABLE `organ_bank`
+  ADD CONSTRAINT `organ_bank_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `organ` (`Oid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `triggerA`
+--
+ALTER TABLE `triggerA`
+  ADD CONSTRAINT `triggerA_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `organ` (`Oid`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
