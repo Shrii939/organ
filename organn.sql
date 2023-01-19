@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2023 at 04:27 AM
+-- Generation Time: Jan 19, 2023 at 06:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -40,7 +40,7 @@ CREATE TABLE `donor` (
 --
 
 INSERT INTO `donor` (`Did`, `DName`, `dAddr`, `dCont`, `dDetls`) VALUES
-(1, 'shridhar', 'koteshwara', 123456789, 'healthy');
+(1, 'shridhar', 'ktoeswara', 123455, 'boy 20yo');
 
 -- --------------------------------------------------------
 
@@ -50,11 +50,19 @@ INSERT INTO `donor` (`Did`, `DName`, `dAddr`, `dCont`, `dDetls`) VALUES
 
 CREATE TABLE `orders` (
   `Hname` varchar(20) NOT NULL,
-  `Haddr` varchar(50) DEFAULT NULL,
-  `contact` int(11) DEFAULT NULL,
+  `Haddr` varchar(20) DEFAULT NULL,
+  `contact` bigint(20) DEFAULT NULL,
   `dt` date DEFAULT NULL,
   `Oid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`Hname`, `Haddr`, `contact`, `dt`, `Oid`) VALUES
+('my hst', 'asdf', 1234, '2023-01-19', 2),
+('my hst', 'asdf', 1234, '2023-01-19', 3);
 
 -- --------------------------------------------------------
 
@@ -66,7 +74,7 @@ CREATE TABLE `organ` (
   `Oid` int(11) NOT NULL,
   `Did` int(11) NOT NULL,
   `Otype` varchar(20) DEFAULT NULL,
-  `Odetails` varchar(20) DEFAULT NULL
+  `Odetails` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -82,14 +90,6 @@ CREATE TABLE `organ_bank` (
   `oissue` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Triggers `organ_bank`
---
-DELIMITER $$
-CREATE TRIGGER `tiggera` AFTER INSERT ON `organ_bank` FOR EACH ROW insert into triggerA values(new.Oid , new.tdetails,new.Otype,new.oissue )
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -97,10 +97,12 @@ DELIMITER ;
 --
 
 CREATE TABLE `triggerA` (
-  `Oid` int(11) DEFAULT NULL,
-  `tdetails` varchar(20) DEFAULT NULL,
+  `Did` int(11) DEFAULT NULL,
+  `Oid` int(11) NOT NULL,
   `Otype` varchar(20) DEFAULT NULL,
-  `oissue` varchar(20) DEFAULT NULL
+  `Hname` varchar(30) DEFAULT NULL,
+  `contact` bigint(20) DEFAULT NULL,
+  `dt` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -117,8 +119,7 @@ ALTER TABLE `donor`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`Hname`,`Oid`),
-  ADD KEY `Oid` (`Oid`);
+  ADD PRIMARY KEY (`Oid`);
 
 --
 -- Indexes for table `organ`
@@ -137,7 +138,7 @@ ALTER TABLE `organ_bank`
 -- Indexes for table `triggerA`
 --
 ALTER TABLE `triggerA`
-  ADD KEY `Oid` (`Oid`);
+  ADD PRIMARY KEY (`Oid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -154,12 +155,6 @@ ALTER TABLE `donor`
 --
 
 --
--- Constraints for table `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `organ` (`Oid`) ON DELETE CASCADE;
-
---
 -- Constraints for table `organ`
 --
 ALTER TABLE `organ`
@@ -170,12 +165,6 @@ ALTER TABLE `organ`
 --
 ALTER TABLE `organ_bank`
   ADD CONSTRAINT `organ_bank_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `organ` (`Oid`) ON DELETE CASCADE;
-
---
--- Constraints for table `triggerA`
---
-ALTER TABLE `triggerA`
-  ADD CONSTRAINT `triggerA_ibfk_1` FOREIGN KEY (`Oid`) REFERENCES `organ` (`Oid`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
