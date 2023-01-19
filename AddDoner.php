@@ -59,7 +59,7 @@ if ($con) {
             </div>
         </nav>
     </div>
-    <form action="" method="post">
+    <form id="form"  action="" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
                 <h1>Donor organ details </h1>
@@ -116,6 +116,8 @@ if (isset($_POST["submit"])) {
     mysqli_query($link, $sql0);
     echo "<script type='text/javascript'>alert('$message')</script>";
     header("Location: 'AddDoner.php'");
+    echo "<script>document.getElementById('form').reset();</script>";
+
 }
 
 
@@ -148,6 +150,8 @@ if (isset($_POST["Available"])) {
     }
 
     echo "</tbody></table>";
+    echo "<script>document.getElementById('form').reset();</script>";
+
 }
 
 if (isset($_POST["Delete"])) {
@@ -156,6 +160,8 @@ if (isset($_POST["Delete"])) {
     mysqli_query($link, $sql);
     $msg = "Deleted item";
     echo "<script type='text/javascript'>alert('$msg')</script>";
+    echo "<script>document.getElementById('form').reset();</script>";
+
 }
 
 

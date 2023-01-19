@@ -59,7 +59,7 @@ if ($con) {
             </div>
         </nav>
     </div>
-    <form action="" method="post">
+    <form  id="form"  action="" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
                 <h1>Organ donation details </h1>
@@ -104,6 +104,8 @@ if (isset($_POST["submit"])) {
     echo "$sql";
     mysqli_query($link, $sql);
     echo "<script type='text/javascript'>alert('$message')</script>";
+    echo "<script>document.getElementById('form').reset();</script>";
+
 }
 
 if (isset($_POST["Available"])) {
@@ -133,5 +135,7 @@ if (isset($_POST["Available"])) {
     }
 
     echo "</tbody></table>";
+    echo "<script>document.getElementById('form').reset();</script>";
+
 }
 ?>

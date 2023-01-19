@@ -60,10 +60,10 @@ if ($conn) {
             </div>
         </nav>
     </div>
-    <form action="" method="post">
+    <form id="form"  action="" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
-                <h1>Organ tested details yet to be completed </h1>
+                <h1>Organ tested </h1>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" name="Oid" placeholder="product name" />
@@ -133,7 +133,7 @@ if (isset($_POST["submit"])) {
     //     echo "</tr>";
     // }
 
-    $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid AND organ_bank != 'rejected' ORDER BY Did";
+    $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid ORDER BY Did";
     echo "$sql";
     $result = $link->query($sql);
     // Loop through each row of data
@@ -148,6 +148,8 @@ if (isset($_POST["submit"])) {
         echo "</tr>";
     }
     echo "</tbody></table>";
+     echo "<script>document.getElementById('form').reset();</script>";
+
 }
 
 if (isset($_POST["update"])) {
@@ -178,7 +180,7 @@ if (isset($_POST["update"])) {
     echo "  </tr>";
     echo " </thead>";
     echo "<tbody>";
-    $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid ORDER BY Did";
+    $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid  AND organ_bank != 'rejected'  ORDER BY Did";
     echo "$sql";
     $result = $link->query($sql);
     // Loop through each row of data
@@ -193,5 +195,7 @@ if (isset($_POST["update"])) {
         echo "</tr>";
     }
     echo "</tbody></table>";
+    echo "<script>document.getElementById('form').reset();</script>";
+    // DELETE FROM organ_bank WHERE status = 'rejected';
 }
 ?>

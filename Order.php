@@ -60,7 +60,7 @@ if ($conn) {
             </div>
         </nav>
     </div>
-    <form action="" method="post">
+    <form id="form"  action="" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
                 <h1>Order form</h1>
@@ -107,5 +107,7 @@ if (isset($_POST["submit"])) {
     mysqli_query($link, $sql2);
     $msg = "Order placed successfully";
     echo "<script type='text/javascript'>alert('$msg')</script>";
+    echo "<script>document.getElementById('form').reset();</script>";
+
 }
 ?>

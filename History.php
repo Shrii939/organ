@@ -20,7 +20,7 @@ if ($conn) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Organ Bank</title>
+    <title>History</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/product.css" />
@@ -95,6 +95,8 @@ echo "$sql";
      echo "<td>" . $row["Hname"] . "</td>";
      echo "</tr>";
  }
+ echo "<script>document.getElementById('form').reset();</script>";
+
 
 ?>
 
