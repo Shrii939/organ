@@ -98,6 +98,7 @@ if (isset($_POST["submit"])) {
     $sql1 = "INSERT INTO orders values('$_POST[Hname]', '$_POST[Haddr]', '$_POST[cont]', '$_POST[date]', '$_POST[Oid]')";
     echo "$sql1";
     mysqli_query($link, $sql1);
+    echo "donr";
     $sql2 = "DELETE FROM organ WHERE Oid='$_POST[Oid]'";
     echo "$sql2";
     mysqli_query($link, $sql2);

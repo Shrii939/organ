@@ -1,0 +1,8 @@
+INSERT INTO triggerA(new.Did, new.Oid, new.Otype,new.Odetails, new.Oissue,new.Hname, new.Hcontt)
+SELECT organ.Did, organ.Oid, Organ.Otype,Organ.Odetails,organ_bank.oissue,orders.Hname,orders.contact
+FROM organ
+JOIN organ_bank ON organ.Oid = organ_bank.Oid
+JOIN orders ON organ_bank.Oid = orders.ref_id
+WHERE organ.Oid = NEW.Oid;
+
+INSERT INTO tiggerA(new.Did, new.Oid, new.Otype,new.Odetails, new.Oissue,new.Hname, new.Hcontt)SELECT organ.Did, organ.Oid, organ.Otype,organ.Odetails,organ_bank.oissue,orders.Hname,orders.contact FROM organ JOIN organ_bank ON organ.Oid = organ_bank.Oid JOIN orders ON organ_bank.Oid = orders.Oid WHERE organ.Oid = NEW.Oid;
