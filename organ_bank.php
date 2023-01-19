@@ -63,7 +63,7 @@ if ($conn) {
     <form action="" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
-                <h1>Organ tested details yet to be completed  </h1>
+                <h1>Organ tested details yet to be completed </h1>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" name="Oid" placeholder="product name" />
@@ -74,15 +74,18 @@ if ($conn) {
                 <label for="floatingInput">Test details</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="cost" name="Otype" />
+                <input type="text" class="form-control" id="floatingInput" placeholder="type" name="Otype" />
                 <label for="floatingInput">Organ type</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="cost" name="oissue" />
+                <input type="text" class="form-control" id="floatingInput" placeholder="review" name="oissue" />
                 <label for="floatingInput">Organ review</label>
             </div>
             <button class="m-3" name="submit">
                 Submit
+            </button>
+            <button class="m-3" name="update">
+                update
             </button>
 
         </div>
@@ -96,12 +99,11 @@ if ($conn) {
 
 <?php
 
-if(isset($_POST["submit"]))
-{
+if (isset($_POST["submit"])) {
     $sql = "INSERT INTO organ_bank VALUES('$_POST[Oid]','$_POST[tdetails]', '$_POST[Otype]', '$_POST[oissue]') ";
     echo "$sql";
     mysqli_query($link, $sql);
-    $msg = "updated organ";
+    $msg = "added organ to organ_bank";
     echo "<script type='text/javascript'>alert('$msg')</script>";
 
     echo "<div class='container table table-bordered table-responsive-sm '>";
@@ -131,6 +133,51 @@ if(isset($_POST["submit"]))
     //     echo "</tr>";
     // }
 
+    $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid AND organ_bank != 'rejected' ORDER BY Did";
+    echo "$sql";
+    $result = $link->query($sql);
+    // Loop through each row of data
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["Did"] . "</td>";
+        echo "<td>" . $row["Oid"] . "</td>";
+        echo "<td>" . $row["Otype"] . "</td>";
+        echo "<td>" . $row["tdetails"] . "</td>";
+        echo "<td>" . $row["oissue"] . "</td>";
+        echo '<td width:"170"> <form method="POST" action="Order.php"><input type="submit"  value="Order"/> </form> </td>';
+        echo "</tr>";
+    }
+    echo "</tbody></table>";
+}
+
+if (isset($_POST["update"])) {
+    $id = $_POST['Oid'];
+    $test_details = $_POST['tdetails'];
+    $organ_type = $_POST['Otype'];
+    $organ_review = $_POST['oissue'];
+    $update_query = "UPDATE organ_bank SET tdetails='$test_details', Otype='$organ_type', oissue='$organ_review' WHERE Oid='$id'";
+    echo "$update_query";
+    mysqli_query($link, $update_query);
+
+    $msg = "updated organ";
+    echo "<script type='text/javascript'>alert('$msg')</script>";
+
+
+
+
+    echo "<div class='container table table-bordered table-responsive-sm '>";
+    echo " <table class='table'>";
+    echo "<thead>";
+    echo "  <tr>";
+    echo "    <th>Donor ID</th>";
+    echo "    <th>Organ ID</th>";
+    echo "    <th>organ Type</th>";
+    echo "    <th>organ Issue</th>";
+    echo "    <th>Test details</th>";
+    echo "    <th>ORDER</th>";
+    echo "  </tr>";
+    echo " </thead>";
+    echo "<tbody>";
     $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid ORDER BY Did";
     echo "$sql";
     $result = $link->query($sql);
@@ -145,12 +192,6 @@ if(isset($_POST["submit"]))
         echo '<td width:"170"> <form method="POST" action="Order.php"><input type="submit"  value="Order"/> </form> </td>';
         echo "</tr>";
     }
-
-
-
     echo "</tbody></table>";
 }
 ?>
-
-
-
