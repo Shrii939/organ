@@ -3,13 +3,12 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "organn";
-
-// Create connection
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-
-    die("Connection failed: " . $conn->connect_error);
+$link = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_select_db($link, $dbname);
+if ($conn) {
+    echo (" ");
+} else {
+    die("connection failed" . mysqli_connect_error());
 }
 
 ?>
@@ -70,13 +69,13 @@ if ($conn->connect_error) {
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" name="Haddr" placeholder="product name" />
                 <label for="floatingInput">Address</label>
-            </div>          
+            </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" name="cont" placeholder="product name" />
                 <label for="floatingInput">Contact</label>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="date" placeholder="product name" />
+            <div class="form-floating mb-3 startDate">
+                <input type="date" class="form-control" id="floatingInput" name="date" placeholder="product name" />
                 <label for="floatingInput">Date</label>
             </div>
             <div class="form-floating mb-3">
@@ -86,7 +85,7 @@ if ($conn->connect_error) {
             <button class="m-3" name="submit">
                 Submit
             </button>
-            </div>
+        </div>
     </form>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -94,12 +93,14 @@ if ($conn->connect_error) {
 
 </html>
 <?php
-    // delete from organs and insert into order table
+// delete from organs and insert into order table
 if (isset($_POST["submit"])) {
     $sql1 = "INSERT INTO orders values('$_POST[Hname]', '$_POST[Haddr]', '$_POST[cont]', '$_POST[date]', '$_POST[Oid]')";
-    mysqli_query($conn, $sql1);
+    echo "$sql1";
+    mysqli_query($link, $sql1);
     $sql2 = "DELETE FROM organ WHERE Oid='$_POST[Oid]'";
-    mysqli_query($conn, $sql2);
+    echo "$sql2";
+    mysqli_query($link, $sql2);
     $msg = "Order placed successfully";
     echo "<script type='text/javascript'>alert('$msg')</script>";
 }

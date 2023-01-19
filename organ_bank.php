@@ -3,13 +3,12 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "organn";
-
-// Create connection
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-
-    die("Connection failed: " . $conn->connect_error);
+$link = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_select_db($link, $dbname);
+if ($conn) {
+    echo (" ");
+} else {
+    die("connection failed" . mysqli_connect_error());
 }
 
 ?>
@@ -96,37 +95,67 @@ if ($conn->connect_error) {
 
 if(isset($_POST["submit"]))
 {
-    $sql = "INSERT INTO organ_bank VALUES('$_POST[Oid]','$_POST[tdetails]', '$_POST[Otype]', '$_POST[oissue]'";
+    $sql = "INSERT INTO organ_bank VALUES('$_POST[Oid]','$_POST[tdetails]', '$_POST[Otype]', '$_POST[oissue]') ";
+    echo "$sql";
     mysqli_query($link, $sql);
-    $msg = "";
+    $msg = "updated organ";
     echo "<script type='text/javascript'>alert('$msg')</script>";
 
     echo "<div class='container table table-bordered table-responsive-sm '>";
     echo " <table class='table'>";
     echo "<thead>";
     echo "  <tr>";
+    echo "    <th>Donor ID</th>";
     echo "    <th>Organ ID</th>";
     echo "    <th>organ Type</th>";
-    echo "    <th>Donor ID</th>";
+    echo "    <th>organ Issue</th>";
     echo "    <th>Test details</th>";
     echo "    <th>ORDER</th>";
     echo "  </tr>";
     echo " </thead>";
     echo "<tbody>";
     // Fetch data from the database
-    $sql = "SELECT * FROM triggerA";
+    // $sql = "SELECT * FROM triggerA";
+    // $result = $link->query($sql);
+    // // Loop through each row of data
+    // while ($row = $result->fetch_assoc()) {
+    //     echo "<tr>";
+    //     echo "<td>" . $row["Oid"] . "</td>";
+    //     echo "<td>" . $row["tdetails"] . "</td>";
+    //     echo "<td>" . $row["Otype"] . "</td>";
+    //     echo "<td>" . $row["oissue"] . "</td>";
+    //     echo '<td width:"170"> <form method="POST" action="Order.php"><input type="submit"  value="Order"/> </form> </td>';
+    //     echo "</tr>";
+    // }
+
+    $sql = "SELECT organ.Did, organ_bank.Oid, organ_bank.Otype, organ_bank.tdetails,organ_bank.oissue FROM organ_bank, organ WHERE  organ.Oid=organ_bank.Oid ORDER BY Did";
+    echo "$sql";
     $result = $link->query($sql);
     // Loop through each row of data
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
+        echo "<td>" . $row["Did"] . "</td>";
         echo "<td>" . $row["Oid"] . "</td>";
         echo "<td>" . $row["Otype"] . "</td>";
-        echo "<td>" . $row["Did"] . "</td>";
-        echo "<td>" . $row["Test details"] . "</td>";
-        echo '<td width:"170"> <form method="POST" action="orderform.php"><input type="submit"  value="Order"/> </form> </td>';
+        echo "<td>" . $row["tdetails"] . "</td>";
+        echo "<td>" . $row["oissue"] . "</td>";
+        echo '<td width:"170"> <form method="POST" action="Order.php"><input type="submit"  value="Order"/> </form> </td>';
         echo "</tr>";
     }
+
+
 
     echo "</tbody></table>";
 }
 ?>
+
+
+
+INSERT INTO triggerA(new.Did, new.Oid, new.Otype,new.Odetails, new.Oissue,new.Hname, new.Hcontt)
+SELECT organ.Did, organ.Oid, Organ.Otype,Organ.Odetails,organ_bank.oissue,orders.Hname,orders.contact
+FROM organ
+JOIN organ_bank ON organ.Oid = organ_bank.Oid
+JOIN orders ON organ_bank.Oid = orders.ref_id
+WHERE organ.Oid = NEW.Oid;
+
+INSERT INTO tiggerA(new.Did, new.Oid, new.Otype,new.Odetails, new.Oissue,new.Hname, new.Hcontt)SELECT organ.Did, organ.Oid, organ.Otype,organ.Odetails,organ_bank.oissue,orders.Hname,orders.contact FROM organ JOIN organ_bank ON organ.Oid = organ_bank.Oid JOIN orders ON organ_bank.Oid = orders.Oid WHERE organ.Oid = NEW.Oid;

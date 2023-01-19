@@ -98,6 +98,7 @@ if ($con) {
 if (isset($_POST["submit"])) {
     $message = 'Organ added';
     $sql = "INSERT INTO organ VALUES('$_POST[Oid]','$_POST[Did]','$_POST[Otype]','$_POST[Odetails]')";
+    echo "$sql";
     mysqli_query($link, $sql);
     echo "<script type='text/javascript'>alert('$message')</script>";
 }
@@ -115,7 +116,8 @@ if (isset($_POST["Available"])) {
     echo " </thead>";
     echo "<tbody>";
     // Fetch data from the database
-    $sql = "SELECT * FROM organ";
+    $sql = "SELECT * FROM organ ORDER BY Oid";
+    echo "$sql";
     $result = $link->query($sql);
     // Loop through each row of data
     while ($row = $result->fetch_assoc()) {

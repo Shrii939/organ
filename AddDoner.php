@@ -62,11 +62,11 @@ if ($con) {
                 <h1>Donor organ details </h1>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="Did" placeholder="product name"  />
+                <input type="text" class="form-control" id="floatingInput" required name="Did" placeholder="product name" />
                 <label for="floatingInput">Donor id</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="cost"  name="dname" />
+                <input type="text" class="form-control" id="floatingInput" placeholder="cost" name="dname" />
                 <label for="floatingInput">Donor name</label>
             </div>
             <div class="form-floating mb-3">
@@ -91,11 +91,12 @@ if ($con) {
             <button name="Delete">
                 Delete
             </button>
-        </div>
-        <button class="m-3" name="Available">
-            Available
-        </button>
+            <button name="Available">
+                Available
+            </button>
     </form>
+    </div>
+
 
 
 </body>
@@ -107,7 +108,9 @@ if ($con) {
 <?php
 if (isset($_POST["submit"])) {
     $message = 'Donor added';
-    mysqli_query($link, "INSERT INTO donor VALUES('$_POST[Did]','$_POST[dname]','$_POST[daddr]','$_POST[dcont]','$_POST[ddtls]')");
+    $sql0 = "INSERT INTO donor VALUES('$_POST[Did]','$_POST[dname]','$_POST[daddr]','$_POST[dcont]','$_POST[ddtls]')";
+    echo "$sql0";
+    mysqli_query($link, $sql0);
     echo "<script type='text/javascript'>alert('$message')</script>";
     header("Location: 'AddDoner.php'");
 }
@@ -127,8 +130,9 @@ if (isset($_POST["Available"])) {
     echo " </thead>";
     echo "<tbody>";
     // Fetch data from the database
-    $sql = "SELECT * FROM donor";
-    $result = $link->query($sql);
+    $sql1 = "SELECT * FROM donor";
+    echo "$sql1";
+    $result = $link->query($sql1);
     // Loop through each row of data
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
@@ -144,8 +148,10 @@ if (isset($_POST["Available"])) {
 }
 
 if (isset($_POST["Delete"])) {
-    mysqli_query($link, "DELETE FROM donor WHERE dName='$_POST[dname]' AND Did='$_POST[Did]'");
-    $msg = "Deleted item '$_POST[dname]'";
+    $sql = "DELETE FROM donor WHERE dName='$_POST[dname]' AND Did='$_POST[Did]'";
+    echo "$sql";
+    mysqli_query($link, $sql);
+    $msg = "Deleted item";
     echo "<script type='text/javascript'>alert('$msg')</script>";
 }
 
