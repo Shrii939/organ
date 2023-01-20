@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 session_start();
-if(!$_SESSION['organn']){
+if (!$_SESSION['organn']) {
     header('Location:login.php');
 }
 ?>
@@ -61,6 +61,9 @@ if(!$_SESSION['organn']){
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" name="logout" href="logout.php">logout</a>
                         </li>
                     </ul>
                 </div>

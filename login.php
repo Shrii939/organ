@@ -1,4 +1,3 @@
-
 <?php
 $servername = "localhost";
 $username = "root";
@@ -7,7 +6,7 @@ $dbname = "organn";
 $link = mysqli_connect($servername, $username, $password, $dbname);
 $conn = mysqli_select_db($link, $dbname);
 if ($conn) {
-    echo (" ");
+    echo ("");
 } else {
     die("connection failed" . mysqli_connect_error());
 }
@@ -26,84 +25,82 @@ if ($conn) {
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="./css/login.css">
+    <!-- <link rel="stylesheet" href="./css/login.css">  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/product.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <h1>todo fetch and check the user is there or not</h1>
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="" method="post">
-                <h1>Create Account</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registration</span>
-                <input type="text" name="username"placeholder="Name" />
-                <input type="password" name=""password placeholder="Password" />
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form action="" method="post">
-                <h1>Sign in</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your account</span>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button name="singin">Sign In</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button name="signin" class="ghost" id="signIn">Sign In</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button class="signup" class="ghost" id="signUp">Sign Up</button>
-                </div>
+    <div class="container-sm p-3 mt-5 ">
+        <!-- <form action="" method="post">
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">username</label>
+                <input required name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
             </div>
-        </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input required name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+        </form> -->
+        <form id="form" action="" method="POST">
+            <div class="container mt-5 border p-5">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" name="username" placeholder="usenname" />
+                    <label for="floatingInput">username </label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingInput" name="password" placeholder="password" />
+                    <label for="floatingInput">password</label>
+                </div>
+                <button name="login" type="submit" class="btn btn-primary m-3" onclick="clearform()">login</button>
+
+        </form>
     </div>
-    <script src="" async defer></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <script>
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const container = document.getElementById('container');
-    signUpButton.addEventListener('click', () => {
-        container.classList.add("right-panel-active");
-    });
-    signInButton.addEventListener('click', () => {
-        container.classList.remove("right-panel-active");
-    });
+    function clearform() {
+        document.getElementById("floatingInput").value = ""; //don't forget to set the textbox ID
+    }
 </script>
+
 </html>
 
 <?php
-if ($isset($_POST['signin'])) {
+if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $sql = "SELECT * FROM users where username = '$username' AND password='$password' ";
+    echo "$username   $password";
+    $sql = "SELECT * FROM users where username='$username' AND password ='$password' ";
+    echo "$sql";
     $res = mysqli_query($link, $sql);
 
-    if(mysqli_num_rows($res) == 1){
+    if (mysqli_num_rows($res) == 1) {
         session_start();
-        $_SESSION['organn']=true;
-        header("o")
+        $_SESSION['organn'] = true;
+        echo "<script>document.getElementById('form').reset();</script>";
+
+        header("location:home.php");
     }
+
+    if (mysqli_num_rows($res) == 0) {
+        $sql = "INSERT INTO users(username,password) VALUES('$username','$password')";
+        echo "$sql";
+        mysqli_query($link, $sql);
+        echo "<script>document.getElementById('form').reset();</script>";
+        $msg = "user added , You can login now";
+        echo "<script type='text/javascript'>alert('$msg')</script>";
+    }
+    echo "<script>document.getElementById('form').reset();</script>";
 }
+// echo "hi";  
 ?>

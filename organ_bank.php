@@ -58,6 +58,9 @@ if(!$_SESSION['organn']){
                         <li class="nav-item">
                             <a class="nav-link" href="History.php">History</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" name="logout" href="logout.php">logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
