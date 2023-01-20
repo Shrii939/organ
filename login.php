@@ -53,14 +53,14 @@ if ($conn) {
             <div class="container mt-5 border p-5">
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" name="username" placeholder="usenname" />
-                    <label for="floatingInput">username </label>
+                    <input type="text" class="form-control" id="floatingInput" name="username" placeholder="usenname" required/>
+                    <label  for="floatingInput">username </label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingInput" name="password" placeholder="password" />
+                    <input type="password" class="form-control" id="floatingInput" name="password" placeholder="password" required/>
                     <label for="floatingInput">password</label>
                 </div>
-                <button name="login" type="submit" class="btn btn-primary m-3" onclick="clearform()">login</button>
+                <button name="login" type="submit" class="btn btn-primary m-3">login</button>
 
         </form>
     </div>
@@ -87,7 +87,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($res) == 1) {
         session_start();
         $_SESSION['organn'] = true;
-        echo "<script>document.getElementById('form').reset();</script>";
+
 
         header("location:home.php");
     }
@@ -96,11 +96,11 @@ if (isset($_POST['login'])) {
         $sql = "INSERT INTO users(username,password) VALUES('$username','$password')";
         echo "$sql";
         mysqli_query($link, $sql);
-        echo "<script>document.getElementById('form').reset();</script>";
+
         $msg = "user added , You can login now";
         echo "<script type='text/javascript'>alert('$msg')</script>";
+        echo "<script>document.getElementById('form').reset();</script>";
     }
-    echo "<script>document.getElementById('form').reset();</script>";
 }
 // echo "hi";  
 ?>

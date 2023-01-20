@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2023 at 08:41 AM
+-- Generation Time: Jan 20, 2023 at 09:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -40,7 +40,7 @@ CREATE TABLE `donor` (
 --
 
 INSERT INTO `donor` (`Did`, `DName`, `dAddr`, `dCont`, `dDetls`) VALUES
-(1, 'shridhar', 'ktoeswara', 123455, 'boy 20yo');
+(1, 'chandana', 'koteshwara', 123455, '20yo');
 
 -- --------------------------------------------------------
 
@@ -61,9 +61,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`Hname`, `Haddr`, `contact`, `dt`, `Oid`) VALUES
-('my hst', 'asdf', 1234, '2023-01-19', 2),
-('my hst', 'asdf', 1234, '2023-01-19', 3),
-('aj', 'banglore', 1234456, '2023-01-17', 5);
+('aj', 'banglore', 1234456, '2023-01-17', 5),
+('myhospital', 'kodi', 9108274939, '2023-01-20', 7),
+('manipal', 'manipal', 1254639870, '2023-01-20', 101);
 
 --
 -- Triggers `orders`
@@ -92,7 +92,7 @@ CREATE TABLE `organ` (
 --
 
 INSERT INTO `organ` (`Oid`, `Did`, `Otype`, `Odetails`) VALUES
-(7, 1, 'eye', 'ha');
+(111, 1, 'heart', 'healthy');
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE `organ_bank` (
 --
 
 INSERT INTO `organ_bank` (`Oid`, `tdetails`, `Otype`, `oissue`) VALUES
-(7, 'rejected', 'eye', 'was fine meri marzi');
+(111, 'pass', 'heart', 'good and healthy');
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,9 @@ CREATE TABLE `triggerA` (
 --
 
 INSERT INTO `triggerA` (`Oid`, `Did`, `Otype`, `Odetails`) VALUES
-(5, 1, 'heart', 'healthy lovable heart');
+(5, 1, 'heart', 'healthy lovable heart'),
+(7, 1, 'eye', 'ha'),
+(101, 1, 'kidney', 'tests passed');
 
 -- --------------------------------------------------------
 
@@ -145,15 +147,6 @@ CREATE TABLE `users` (
   `username` varchar(11) NOT NULL,
   `password` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(2, '20cs082', '1234'),
-(3, '', '1234'),
-(4, '', '');
 
 --
 -- Indexes for dumped tables
@@ -204,7 +197,7 @@ ALTER TABLE `donor`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
