@@ -113,7 +113,9 @@ if (isset($_POST["submit"])) {
     mysqli_query($link, $sql2);
 
 
-    $n1 = '$_POST[cont]';
+    $n = '$_POST[cont]';
+    $m = "+91";
+    $n1 = $m.$n;
     $n2 = "Organ order placed successfully";
     $result = shell_exec("python msg.py$n1 $n2");
     $msg = "Order placed successfully";
