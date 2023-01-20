@@ -10,7 +10,10 @@ if ($conn) {
 } else {
     die("connection failed" . mysqli_connect_error());
 }
-
+session_start();
+if(!$_SESSION['organn']){
+    header('Location:login.php');
+}
 ?>
 
 <!DOCTYPE html>

@@ -10,7 +10,10 @@ if ($conn) {
 } else {
     die("connection failed" . mysqli_connect_error());
 }
-
+session_start();
+if(!$_SESSION['organn']){
+    header('Location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -66,37 +69,37 @@ if ($conn) {
 
 </html>
 
-<?php 
+<?php
 echo "<div class='container table table-bordered table-responsive-sm '>";
 echo " <table class='table table-bordered'>";
 echo "<thead>";
 echo "  <tr>";
 echo "    <th>Organ ID</th>";
 echo "    <th>Donar ID</th>";
-echo "    <th>Dname</th>";
+// echo "    <th>Dname</th>";
 echo "    <th>organ Type</th>";
 echo "    <th>organ etails</th>";
 echo "    <th>Hospital name</th>";
 echo "  </tr>";
 echo " </thead>";
 echo "<tbody>";
- $sql = "SELECT triggerA.*, donor.Dname, orders.Hname FROM triggerA  JOIN donor ON triggerA.Did = donor.Did  JOIN orders ON triggerA.Oid = orders.Oid";
+//  $sql = "SELECT triggerA.*, donor.Dname, orders.Hname FROM triggerA  JOIN donor ON triggerA.Did = donor.Did  JOIN orders ON triggerA.Oid = orders.Oid";
+$sql = "SELECT triggerA.*, orders.Hname FROM triggerA JOIN orders ON triggerA.Oid=orders.Oid";
 // $sql = "SELECT * FROM triggerA"; 
 echo "$sql";
- $result = $link->query($sql);
- // Loop through each row of data
- while ($row = $result->fetch_assoc()) {
-     echo "<tr>";
-     echo "<td>" . $row["Oid"] . "</td>";
-     echo "<td>" . $row["Did"] . "</td>";
-     echo "<td>" . $row["Dname"] . "</td>";
-     echo "<td>" . $row["Otype"] . "</td>";
-     echo "<td>" . $row["Odetails"] . "</td>";
-     echo "<td>" . $row["Hname"] . "</td>";
-     echo "</tr>";
- }
- echo "<script>document.getElementById('form').reset();</script>";
+$result = $link->query($sql);
+// Loop through each row of data
+while ($row = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td>" . $row["Oid"] . "</td>";
+    echo "<td>" . $row["Did"] . "</td>";
+    // echo "<td>" . $row["Dname"] . "</td>";
+    echo "<td>" . $row["Otype"] . "</td>";
+    echo "<td>" . $row["Odetails"] . "</td>";
+    echo "<td>" . $row["Hname"] . "</td>";
+    echo "</tr>";
+}
+echo "<script>document.getElementById('form').reset();</script>";
 
 
 ?>
-

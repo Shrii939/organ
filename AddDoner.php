@@ -10,6 +10,10 @@ if ($con) {
 } else {
     die("connection failed" . mysqli_connect_error());
 }
+session_start();
+if(!$_SESSION['organn']){
+    header('Location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +63,7 @@ if ($con) {
             </div>
         </nav>
     </div>
-    <form id="form"  action="" method="post">
+    <form  id="form" action="" method="post">
         <div class="container mt-5 border p-5">
             <div class="text-center m-4 text-dark">
                 <h1>Donor organ details </h1>
