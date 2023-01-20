@@ -1,3 +1,17 @@
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "organn";
+$link = mysqli_connect($servername, $username, $password, $dbname);
+$conn = mysqli_select_db($link, $dbname);
+if ($conn) {
+    echo (" ");
+} else {
+    die("connection failed" . mysqli_connect_error());
+}
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,7 +35,7 @@
         <h1>todo fetch and check the user is there or not</h1>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form action="" method="post">
                 <h1>Create Account</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -29,14 +43,13 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="text" name="username"placeholder="Name" />
+                <input type="password" name=""password placeholder="Password" />
                 <button>Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="" method="post">
                 <h1>Sign in</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -47,7 +60,7 @@
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
+                <button name="singin">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -55,12 +68,12 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
                     <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
+                    <button name="signin" class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hello, Friend!</h1>
                     <p>Enter your personal details and start journey with us</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <button class="signup" class="ghost" id="signUp">Sign Up</button>
                 </div>
             </div>
         </div>
@@ -79,3 +92,18 @@
     });
 </script>
 </html>
+
+<?php
+if ($isset($_POST['signin'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM users where username = '$username' AND password='$password' ";
+    $res = mysqli_query($link, $sql);
+
+    if(mysqli_num_rows($res) == 1){
+        session_start();
+        $_SESSION['organn']=true;
+        header("o")
+    }
+}
+?>
