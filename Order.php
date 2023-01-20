@@ -111,6 +111,9 @@ if (isset($_POST["submit"])) {
     $sql2 = "DELETE FROM organ WHERE Oid='$_POST[Oid]'";
     echo "$sql2";
     mysqli_query($link, $sql2);
+    $n1 = '$_POST[cont]';
+    $n2 = "Organ order placed successfully";
+    $result = shell_exec("python msg.py$n1 $n2");
     $msg = "Order placed successfully";
     echo "<script type='text/javascript'>alert('$msg')</script>";
     echo "<script>document.getElementById('form').reset();</script>";
