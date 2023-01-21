@@ -33,9 +33,10 @@ if ($conn) {
 </head>
 
 <body>
-    <div class="container  p-3 mt-5 ">
-        <!-- <form action="" method="post">
-
+    <div class="card  center     p-3 mt-5 ">
+        <div class="card-body">
+     <form action="" method="post">
+            
             <div class="form-group">
                 <label for="exampleInputEmail1">username</label>
                 <input required name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
@@ -48,8 +49,9 @@ if ($conn) {
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-        </form> -->
-        <form id="form" action="" method="POST">
+        </div>
+        </form> 
+        <!-- <form id="form" action="" method="POST">
             <div class="container mt-5 border p-5">
 
                 <div class="form-floating mb-3">
@@ -62,7 +64,7 @@ if ($conn) {
                 </div>
                 <button name="login" type="submit" class="btn btn-primary m-3">login</button>
 
-        </form>
+        </form> -->
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
