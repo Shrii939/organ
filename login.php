@@ -33,7 +33,7 @@ if ($conn) {
 </head>
 
 <body>
-    <div class="container-sm p-3 mt-5 ">
+    <div class="container  p-3 mt-5 ">
         <!-- <form action="" method="post">
 
             <div class="form-group">
